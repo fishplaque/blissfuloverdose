@@ -15,3 +15,5 @@ func _on_test_button_pressed() -> void:
 func _on_infinite_button_pressed() -> void:
 	# Переход на бесконечный режим
 	get_tree().change_scene_to_file(infinite_mode_path)
+
+# gay sex super dildo rocket 1337
