@@ -1,0 +1,106 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6pi4etctdh1i"]
+
+[ext_resource type="Script" uid="uid://deeqpjaavl1eq" path="res://force_pad.gd" id="1_fnfg5"]
+[ext_resource type="PackedScene" uid="uid://cb6ghjayq6wpv" path="res://prope.tscn" id="2_r426p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r426p"]
+size = Vector3(4, 1.4, 1.4)
+
+[sub_resource type="PrismMesh" id="PrismMesh_fnfg5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r426p"]
+emission_shape = 1
+emission_sphere_radius = 1.11
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r426p"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.287)
+
+[sub_resource type="QuadMesh" id="QuadMesh_l18ne"]
+material = SubResource("StandardMaterial3D_r426p")
+size = Vector2(15, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aiglr"]
+size = Vector3(0.248303, 0.553589, 0.505981)
+
+[node name="ForcePad" type="Node3D"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+script = ExtResource("1_fnfg5")
+
+[node name="ForceArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ForceArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, -1.04308e-07, -1.19209e-07)
+shape = SubResource("BoxShape3D_r426p")
+
+[node name="PROPE" parent="." instance=ExtResource("2_r426p")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -0.4, 0, 0)
+
+[node name="DirectionNode" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DirectionNode"]
+transform = Transform3D(-0.275, -4.79813e-08, -2.07619e-08, -6.01032e-09, 0.1375, -0.238157, 5.1934e-08, -0.238157, -0.1375, -8.20021e-10, 0.695188, -0.0187599)
+visible = false
+mesh = SubResource("PrismMesh_fnfg5")
+
+[node name="AirFlowParticles" type="GPUParticles3D" parent="."]
+amount = 10
+lifetime = 0.31
+preprocess = 1.0
+speed_scale = 2.15
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_r426p")
+draw_pass_1 = SubResource("QuadMesh_l18ne")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.403912, 0.306763, -0.0130615)
+shape = SubResource("BoxShape3D_aiglr")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.643912, 0.0570581, -0.0130615)
+shape = SubResource("BoxShape3D_aiglr")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.483912, 0.777058, -0.0130615)
+shape = SubResource("BoxShape3D_aiglr")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -0.403912, 0.214763, 0.218938)
+shape = SubResource("BoxShape3D_aiglr")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.403912, -0.0142219, 0.311244)
+shape = SubResource("BoxShape3D_aiglr")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, -0.403912, -0.242222, 0.215244)
+shape = SubResource("BoxShape3D_aiglr")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, -0.403912, -0.24255, -0.241987)
+shape = SubResource("BoxShape3D_aiglr")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 8.74228e-08, 1, 0, -1, 8.74228e-08, -0.403912, -0.0135655, -0.334293)
+shape = SubResource("BoxShape3D_aiglr")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -0.403912, 0.214435, -0.238293)
+shape = SubResource("BoxShape3D_aiglr")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, -0.403912, -0.320736, -0.00633882)
+shape = SubResource("BoxShape3D_aiglr")

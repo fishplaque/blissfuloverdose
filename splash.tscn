@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnvnusuj64q6"]
+
+[ext_resource type="Script" uid="uid://rok4icpswbbj" path="res://splash.gd" id="1_b04ml"]
+[ext_resource type="Texture2D" uid="uid://62sv880vivlp" path="res://brizg.png" id="2_50j67"]
+
+[node name="Splash" type="Node3D"]
+script = ExtResource("1_b04ml")
+
+[node name="Decal" type="Decal" parent="."]
+texture_albedo = ExtResource("2_50j67")
+
+[node name="Timer" type="Timer" parent="Decal"]

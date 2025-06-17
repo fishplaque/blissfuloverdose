@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1hoytk58omen"]
+
+[ext_resource type="Script" uid="uid://di3vxy2sgcg1h" path="res://player.gd" id="1_b1pqo"]
+[ext_resource type="Script" uid="uid://dkn03q1lb4ims" path="res://sway.gd" id="2_hqtel"]
+[ext_resource type="PackedScene" uid="uid://uwei5ptlvsos" path="res://FuckingShotgunKillMeePlz.tscn" id="3_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bw3bsmcc8jwlu" path="res://crosshair.png" id="4_2hs0m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pkg7o"]
+radius = 1.00339
+height = 2.91807
+
+[node name="player" type="CharacterBody3D"]
+transform = Transform3D(-0.997601, 0, -0.0124324, 0, 0.997679, 0, 0.0124324, 0, -0.997601, 0, 0, 0)
+collision_mask = 32769
+wall_min_slide_angle = 1.49051
+floor_snap_length = 2.0
+script = ExtResource("1_b1pqo")
+move_speed = 35.0
+jump_velocity = 20.0
+second_jump_multiplier = 2.0
+dash_force = 80.0
+max_fall_speed = 500.0
+speed_for_max_fov = 100.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2.21341, 0)
+shape = SubResource("CapsuleShape3D_pkg7o")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1.00233, 0, 0, 0, 1.00233, 0, 0, 0, 1.00233, 0, 3.7548, 0.289004)
+fov = 90.5691
+
+[node name="WeaponRoot" type="Node3D" parent="Camera3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+script = ExtResource("2_hqtel")
+
+[node name="Shotgun" parent="Camera3D/WeaponRoot" instance=ExtResource("3_sweqy")]
+transform = Transform3D(1, 0, -1.86265e-09, 0, 1, 0, 1.86265e-09, 0, 1, 0.0375625, -1.68971, -3.01407)
+
+[node name="HookRayCast" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, -1, -500)
+collide_with_areas = true
+
+[node name="HookLine" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.00233, 0, 0, 0, 1.00233, 0, 0, 0, 1.00233, 0, 3.7548, 0.289004)
+skeleton = NodePath("../Camera3D")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_2hs0m")

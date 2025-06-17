@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://2t8mbe4vu781"]
+
+[ext_resource type="PackedScene" uid="uid://ckceewlrgfei" path="res://lamp.glb" id="1_bekw5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uno5e"]
+albedo_color = Color(1, 0.889411, 0.617939, 1)
+emission_enabled = true
+emission = Color(1, 0.82215, 0.529547, 1)
+emission_energy_multiplier = 10.16
+
+[sub_resource type="BoxMesh" id="BoxMesh_vxcd3"]
+material = SubResource("StandardMaterial3D_uno5e")
+
+[node name="lamp" instance=ExtResource("1_bekw5")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(0.606197, 0, 0, 0, 1.0859, 0, 0, 0, 0.4887, 0, -0.876355, 0)
+mesh = SubResource("BoxMesh_vxcd3")

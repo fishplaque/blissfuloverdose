@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy65b1affdw53"]
+
+[ext_resource type="Script" uid="uid://4rcs83xdrxr4" path="res://target.gd" id="1_t2jmu"]
+[ext_resource type="Texture2D" uid="uid://xgym2e5lwovf" path="res://MisarableOverdose/textures/Снимок экрана 2025-02-04 152127.png" id="2_e1yvt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e1yvt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ebp1"]
+albedo_texture = ExtResource("2_e1yvt")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ebp1"]
+material = SubResource("StandardMaterial3D_5ebp1")
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_t2jmu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_e1yvt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5ebp1")

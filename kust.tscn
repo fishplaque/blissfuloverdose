@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpq8jx22ddkig"]
+
+[ext_resource type="Texture2D" uid="uid://b6hxwlpstbw48" path="res://kust.png" id="1_up74q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svhgy"]
+transparency = 2
+alpha_scissor_threshold = 0.75
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_up74q")
+
+[sub_resource type="QuadMesh" id="QuadMesh_jvr7y"]
+material = SubResource("StandardMaterial3D_svhgy")
+
+[node name="kust" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_jvr7y")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
+mesh = SubResource("QuadMesh_jvr7y")

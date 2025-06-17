@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi78py6s4y1p6"]
+
+[ext_resource type="Texture2D" uid="uid://c0i586jc5fyex" path="res://windowbroken2.png" id="1_2dr3h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_db78a"]
+size = Vector3(1, 1.59772, 0.00561523)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxfau"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_2dr3h")
+
+[sub_resource type="QuadMesh" id="QuadMesh_v7c2d"]
+material = SubResource("StandardMaterial3D_jxfau")
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.15527e-05, 0.00134277)
+shape = SubResource("BoxShape3D_db78a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.981, 0, 0, 0, -1.57, 0, 0, 0, -0.981, 0, 0, 0)
+mesh = SubResource("QuadMesh_v7c2d")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.981, 0, -8.57617e-08, 0, -1.57, 0, 8.57617e-08, 0, 0.981, 0, 0, 0.00947833)
+mesh = SubResource("QuadMesh_v7c2d")

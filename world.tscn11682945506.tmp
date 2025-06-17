@@ -1,0 +1,136 @@
+[gd_scene load_steps=19 format=3 uid="uid://byb24b6uyta30"]
+
+[ext_resource type="Texture2D" uid="uid://dk8cf2xxmb7m4" path="res://dramatic-panorama-sky-with-storm-cloud-on-a-cloudy-day-panoramic-image-free-photo.jpg" id="1_di22k"]
+[ext_resource type="Script" uid="uid://di3vxy2sgcg1h" path="res://player.gd" id="1_dml3h"]
+[ext_resource type="Texture2D" uid="uid://cbch51c3m850m" path="res://Снимок экрана 2025-02-21 175612.png" id="2_f1ors"]
+[ext_resource type="PackedScene" uid="uid://dxo8xujihdvhx" path="res://lanetrn1.glb" id="4_4fify"]
+[ext_resource type="PackedScene" uid="uid://cd3kmbul2flwa" path="res://shotgun.tscn" id="4_dwbse"]
+[ext_resource type="Texture2D" uid="uid://cd2qx11vhxmb1" path="res://ывпывпыврыварывар.png" id="5_v1trr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lktug"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b8wqq"]
+albedo_texture = ExtResource("1_di22k")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0gxc6"]
+lightmap_size_hint = Vector2i(10, 10)
+material = SubResource("StandardMaterial3D_b8wqq")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e8g84"]
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_shi2y"]
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_15ya7"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dthdu"]
+panorama = ExtResource("2_f1ors")
+energy_multiplier = 3.03
+
+[sub_resource type="Sky" id="Sky_olb5x"]
+sky_material = SubResource("PanoramaSkyMaterial_dthdu")
+
+[sub_resource type="Environment" id="Environment_yxdnd"]
+background_mode = 2
+background_color = Color(0.703808, 0.703808, 0.703808, 1)
+background_energy_multiplier = 0.17
+sky = SubResource("Sky_olb5x")
+sky_custom_fov = 90.0
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.92
+ambient_light_energy = 5.29
+ssr_fade_in = 0.102453
+glow_enabled = true
+fog_enabled = true
+fog_sky_affect = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uy5la"]
+size = Vector3(0.867249, 20.8752, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hy0gl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_etv5g"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150547, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(963.934, 0, 0, 0, 1.18937, 0, 0, 0, 1233.03, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_lktug")
+mesh = SubResource("PlaneMesh_0gxc6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1.98659, 0, 0, 0, 0.996641, 0, 0, 0, 2.03076, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_e8g84")
+
+[node name="player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_dml3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.676, 0)
+shape = SubResource("CapsuleShape3D_shi2y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
+transform = Transform3D(1.00172, 0, 0, 0, 1.00172, 0, 0, 0, 1.00172, -0.119239, 1.67604, 1.269)
+mesh = SubResource("PlaceholderMesh_15ya7")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.19773, 0.0458044)
+environment = SubResource("Environment_yxdnd")
+fov = 90.0
+
+[node name="shotgun" parent="player/Camera3D" instance=ExtResource("4_dwbse")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.156298, -0.301263, -1.9375)
+
+[node name="lanetrn1" parent="." instance=ExtResource("4_4fify")]
+transform = Transform3D(0.0547238, 0, 1.00649, 0, 1, 0, -0.998502, 0, 0.0551616, 2.30882, 0, -8.90697)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="lanetrn1"]
+transform = Transform3D(2.66248, 2.08616e-07, 9.32587e-15, 0, -1.15365e-07, 2.66178, 4.47035e-08, -2.63923, -1.14388e-07, -7.02639, 17.5647, -0.167845)
+light_color = Color(0.724667, 0.819594, 0.972905, 1)
+light_energy = 36.585
+light_indirect_energy = 5.573
+light_volumetric_fog_energy = 0.825
+light_projector = ExtResource("5_v1trr")
+light_size = 10.57
+light_specular = 11.577
+shadow_enabled = true
+shadow_blur = 0.462
+spot_range = 25.248
+spot_angle = 48.15
+spot_angle_attenuation = 1.7411
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lanetrn1"]
+transform = Transform3D(1, 0, 7.45058e-09, 0, 1, 0, 0, 0, 1, -0.130489, -1.26924e-06, -0.0423136)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="lanetrn1/MeshInstance3D"]
+transform = Transform3D(1, 0, 2.23517e-08, 0, 1, 0, -3.72529e-09, 0, 1, 0.48312, -0.541063, 0.00213194)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lanetrn1/MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999903, 0, 0, 0, 0.999916, -0.00106812, 10.564, 0)
+shape = SubResource("BoxShape3D_uy5la")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0449097, 0.998991, 0, -0.998991, 0.0449097, 0.96155, 39.5834, -0.0843697)
+light_color = Color(0.461921, 0.507807, 0.6245, 1)
+light_energy = 0.941
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 3.4
+shadow_enabled = true
+shadow_bias = 0.404
+shadow_normal_bias = 1.431
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.070423, 88.974, -12.8285, -0.302452, 132.81, 0, -0.163812, -206.963, -5.51501, 68.7872, 64.2562, -55.6061)
+mesh = SubResource("BoxMesh_hy0gl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_etv5g")

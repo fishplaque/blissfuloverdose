@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c67pvv8t0b4t4"]
+
+[ext_resource type="Texture2D" uid="uid://iq0u33o2bsna" path="res://ggf.png" id="1_vaca0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ex0q6"]
+transparency = 4
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("1_vaca0")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o7a2y"]
+material = SubResource("StandardMaterial3D_ex0q6")
+
+[node name="her\'2" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_o7a2y")

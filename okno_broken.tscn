@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://d41ltfek8ers"]
+
+[ext_resource type="Texture2D" uid="uid://bkirbh3k388o6" path="res://MisarableOverdose/textures/windowbroken.png" id="1_v8jpg"]
+[ext_resource type="Texture2D" uid="uid://d1f31txufc8d3" path="res://window.png" id="2_2vw1c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fw2rh"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_v8jpg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m68w5"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.707967, 0.707967, 0.707967, 1)
+albedo_texture = ExtResource("2_2vw1c")
+
+[sub_resource type="QuadMesh" id="QuadMesh_aqab2"]
+material = SubResource("StandardMaterial3D_m68w5")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3uyg"]
+size = Vector3(1, 1.59772, 0.00561523)
+
+[node name="okno" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-0.981, 0, 0, 0, 1.57, 0, 0, 0, 0.981, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_fw2rh")
+mesh = SubResource("QuadMesh_aqab2")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-0.980967, 0, -8.57588e-08, 0, 1.56955, 0, 8.57588e-08, 0, -0.980967, 0, 0, -0.0184772)
+material_override = SubResource("StandardMaterial3D_fw2rh")
+mesh = SubResource("QuadMesh_aqab2")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.15527e-05, 0.00134277)
+shape = SubResource("BoxShape3D_a3uyg")

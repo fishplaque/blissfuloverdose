@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://c71vo4ni1dl8r"]
+
+[ext_resource type="PackedScene" uid="uid://ccqar4rie0xbe" path="res://MisarableOverdose/models_and_textures/vorozhina.glb" id="1_dsro5"]
+[ext_resource type="Script" uid="uid://cpvb7x6xkusge" path="res://vorozhina.gd" id="2_81y4x"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iy3r1"]
+animation = &"1_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_81y4x"]
+animation = &"1_run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1h6ij"]
+animation = &"1_run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_88xb3"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_iy3r1")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_81y4x")
+blend_point_1/pos = 0.5
+blend_point_2/node = SubResource("AnimationNodeAnimation_1h6ij")
+blend_point_2/pos = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tm5f1"]
+
+[node name="vorozhina" instance=ExtResource("1_dsro5")]
+script = ExtResource("2_81y4x")
+
+[node name="Armature" parent="." index="0"]
+transform = Transform3D(0.245436, 0, 0, 0, 0.245436, 0, 0, 0, 0.245436, 0, 0.211331, 0)
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/rotation = Quaternion(0.259917, 2.48154e-24, 4.61592e-17, 0.965631)
+bones/1/rotation = Quaternion(0.759461, -4.14605e-17, -8.32281e-17, 0.650553)
+bones/2/rotation = Quaternion(-0.411577, -1.0866e-07, 5.37341e-08, 0.911375)
+bones/3/rotation = Quaternion(-0.113834, 2.35336e-07, -1.49528e-09, 0.9935)
+bones/4/rotation = Quaternion(0.005015, -0.113787, -0.768057, 0.630171)
+bones/5/rotation = Quaternion(0.252442, 0.245647, 0.324952, 0.877688)
+bones/6/rotation = Quaternion(0.0439881, 0.129131, 0.518981, 0.84383)
+bones/7/rotation = Quaternion(-0.467532, 0.00162604, 0.0100497, 0.883918)
+bones/10/rotation = Quaternion(0.928042, 0.141384, 0.301807, -0.166315)
+bones/11/rotation = Quaternion(-0.51497, 0.537185, 0.578588, 0.333876)
+bones/12/rotation = Quaternion(0.165661, -0.816364, 0.0174179, 0.552994)
+bones/13/rotation = Quaternion(0.232724, 0.31189, -0.566427, 0.726446)
+bones/18/rotation = Quaternion(0.153353, -0.153353, -0.690278, 0.690277)
+bones/19/rotation = Quaternion(0.377981, -0.394398, 0.586899, -0.597604)
+bones/20/rotation = Quaternion(0.690277, -0.690277, -0.153353, 0.153353)
+bones/21/rotation = Quaternion(0.610995, -0.57212, 0.415546, -0.355928)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendSpace1D_88xb3")
+anim_player = NodePath("../AnimationPlayer")
+parameters/blend_position = -0.40273
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="3"]
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="4"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0.795369, 1)
+target_position = Vector3(100, -1, 0)
+
+[node name="Area3D" type="Area3D" parent="." index="5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.9)
+shape = SubResource("BoxShape3D_tm5f1")

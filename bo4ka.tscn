@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqcuyfyo8mvmy"]
+
+[ext_resource type="PackedScene" uid="uid://yqo3f1ye5537" path="res://bo4ka.glb" id="1_xp7wy"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fa2ec"]
+height = 3.07063
+radius = 1.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="bo4ka" parent="." instance=ExtResource("1_xp7wy")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="bo4ka"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bo4ka/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57501, 0)
+shape = SubResource("CylinderShape3D_fa2ec")

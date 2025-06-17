@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn12vengnysbl"]
+
+[ext_resource type="Script" uid="uid://cus68jk5ljy1y" path="res://grapple_target.gd" id="1_o15te"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cruel"]
+radius = 0.74947
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o15te"]
+disable_fog = true
+emission_enabled = true
+emission = Color(0.196078, 1, 1, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_o15te"]
+material = SubResource("StandardMaterial3D_o15te")
+
+[node name="GrappleTarget" type="StaticBody3D" groups=["grappleable"]]
+script = ExtResource("1_o15te")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.00360096, 0, -0.00328779)
+shape = SubResource("SphereShape3D_cruel")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_o15te")

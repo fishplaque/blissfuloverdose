@@ -1,0 +1,136 @@
+[gd_scene load_steps=18 format=3 uid="uid://cx850gfleg5k3"]
+
+[ext_resource type="Script" uid="uid://b7kcx4x3ypv1s" path="res://enemy.gd" id="1_3yqyl"]
+[ext_resource type="Texture2D" uid="uid://bfhyxot3rj2ax" path="res://MisarableOverdose/textures/nikita-0001.png" id="1_epg4t"]
+[ext_resource type="Texture2D" uid="uid://c8ya1y65llewr" path="res://MisarableOverdose/textures/nikita-0002.png" id="2_3yqyl"]
+[ext_resource type="Texture2D" uid="uid://jv26ec7iei14" path="res://MisarableOverdose/textures/nikita-0003.png" id="3_wujgv"]
+[ext_resource type="Texture2D" uid="uid://2jtcv075mkje" path="res://MisarableOverdose/textures/nikita-0022.png" id="4_e1ltt"]
+[ext_resource type="Texture2D" uid="uid://cbbtdy2x2odc" path="res://MisarableOverdose/textures/nikita-0004.png" id="4_hb8ge"]
+[ext_resource type="Texture2D" uid="uid://cqj7g7vrmdtin" path="res://MisarableOverdose/textures/nikita-0023.png" id="5_dxifv"]
+[ext_resource type="Texture2D" uid="uid://dqds3lc5oe7gg" path="res://MisarableOverdose/textures/nikita-0005.png" id="5_e1ltt"]
+[ext_resource type="Texture2D" uid="uid://d2sugedesncai" path="res://MisarableOverdose/textures/nikita-0021.png" id="7_e1ltt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dxifv"]
+
+[sub_resource type="Animation" id="Animation_n0g06"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_epg4t")]
+}
+
+[sub_resource type="Animation" id="Animation_ar8e5"]
+resource_name = "attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_wujgv"), ExtResource("4_hb8ge")]
+}
+
+[sub_resource type="Animation" id="Animation_ikqiw"]
+resource_name = "attack1"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("5_dxifv"), ExtResource("4_hb8ge")]
+}
+
+[sub_resource type="Animation" id="Animation_doop2"]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_e1ltt")]
+}
+
+[sub_resource type="Animation" id="Animation_pwjut"]
+resource_name = "walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("1_epg4t"), ExtResource("2_3yqyl")]
+}
+
+[sub_resource type="Animation" id="Animation_lr6v3"]
+resource_name = "walk1"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("7_e1ltt"), ExtResource("4_e1ltt")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hcft"]
+_data = {
+&"RESET": SubResource("Animation_n0g06"),
+&"attack": SubResource("Animation_ar8e5"),
+&"attack1": SubResource("Animation_ikqiw"),
+&"hurt": SubResource("Animation_doop2"),
+&"walk": SubResource("Animation_pwjut"),
+&"walk1": SubResource("Animation_lr6v3")
+}
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_3yqyl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_dxifv")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture_filter = 0
+texture = ExtResource("1_epg4t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_5hcft")
+}

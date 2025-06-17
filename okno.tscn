@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce6tcya7prkl4"]
+
+[ext_resource type="Texture2D" uid="uid://d1f31txufc8d3" path="res://window.png" id="1_m68w5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m68w5"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.707967, 0.707967, 0.707967, 1)
+albedo_texture = ExtResource("1_m68w5")
+
+[sub_resource type="QuadMesh" id="QuadMesh_aqab2"]
+material = SubResource("StandardMaterial3D_m68w5")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3uyg"]
+size = Vector3(1, 1.59772, 0.00561523)
+
+[node name="okno" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.980967, 0, 0, 0, 1.56955, 0, 0, 0, 0.980967, 0, 0, 0)
+mesh = SubResource("QuadMesh_aqab2")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1.6, 0, -8.74228e-08, 0, -1, -0.00280151, 0.0019308, -0.0354686)
+mesh = SubResource("QuadMesh_aqab2")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.15527e-05, 0.00134277)
+shape = SubResource("BoxShape3D_a3uyg")

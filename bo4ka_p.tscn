@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb64e5fgeoc1x"]
+
+[ext_resource type="Script" uid="uid://cs6hc8mgum3pj" path="res://bo4ka.gd" id="1_25n1w"]
+[ext_resource type="PackedScene" uid="uid://yqo3f1ye5537" path="res://bo4ka.glb" id="2_wds1g"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mwbho"]
+bounce = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fa2ec"]
+height = 3.07063
+radius = 1.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+mass = 3.162
+physics_material_override = SubResource("PhysicsMaterial_mwbho")
+script = ExtResource("1_25n1w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57501, 0)
+shape = SubResource("CylinderShape3D_fa2ec")
+
+[node name="bo4ka" parent="RigidBody3D" instance=ExtResource("2_wds1g")]

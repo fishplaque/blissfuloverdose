@@ -1,0 +1,139 @@
+[gd_scene load_steps=7 format=3 uid="uid://d13o6h8o5etkk"]
+
+[ext_resource type="Script" uid="uid://cywqgp0u4y0rs" path="res://MainMenu.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://r51mrhb5m3n0" path="res://MisarableOverdose/textures/sdgsdgsd.png" id="2_7vrkn"]
+
+[sub_resource type="Animation" id="Animation_jix8l"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.175, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(8.35, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_fu7sn"]
+resource_name = "Size"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1.175, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1.175, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(8.35, -0.25, 0, 0.25, 0, 9.99, -0.25, 0, 0.25, 0, 8.35, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_glbon"]
+_data = {
+&"RESET": SubResource("Animation_jix8l"),
+&"Size": SubResource("Animation_fu7sn")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_nlkkf"]
+font_size = 32
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_06t4h")
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.85
+anchor_bottom = 16.2
+offset_right = -0.00012207
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 9.025
+anchor_top = 1.175
+anchor_right = 20.075
+anchor_bottom = 8.35
+offset_top = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7vrkn")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_glbon")
+}
+autoplay = "Size"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 508.0
+offset_right = 712.0
+offset_bottom = 553.0
+text = "t.me/PisosDev"
+label_settings = SubResource("LabelSettings_nlkkf")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 593.0
+offset_right = 192.0
+offset_bottom = 668.0
+text = "кривой хук на E
+смена оружий на Q"
+
+[node name="TestButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 502.0
+offset_top = 425.0
+offset_right = 678.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 28
+text = "test location"
+
+[node name="InfiniteButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 348.0
+offset_right = 706.0
+offset_bottom = 414.0
+theme_override_font_sizes/font_size = 28
+text = "infinite mode"

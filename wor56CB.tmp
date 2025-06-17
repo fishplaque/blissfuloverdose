@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://byb24b6uyta30"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_dml3h"]
+[ext_resource type="PackedScene" uid="uid://bap0pbxujpr3y" path="res://gun1.tscn" id="2_p1sc2"]
+[ext_resource type="PackedScene" uid="uid://dy65b1affdw53" path="res://target.tscn" id="3_c151n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lktug"]
+albedo_color = Color(0.645013, 0.580909, 0.855301, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0gxc6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e8g84"]
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_shi2y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iowds"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(51.6467, 0, 0, 0, 1, 0, 0, 0, 55.0168, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_lktug")
+mesh = SubResource("PlaneMesh_0gxc6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1.98659, 0, 0, 0, 0.996641, 0, 0, 0, 2.03076, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_e8g84")
+
+[node name="player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_dml3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119239, 1.67604, 1.269)
+shape = SubResource("CapsuleShape3D_shi2y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
+transform = Transform3D(1.00172, 0, 0, 0, 1.00172, 0, 0, 0, 1.00172, -0.119239, 1.67604, 1.269)
+mesh = SubResource("CapsuleMesh_iowds")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.115923, 2.32394, 0.690332)
+fov = 93.0036
+
+[node name="Node3D" parent="player/Camera3D" instance=ExtResource("2_p1sc2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.590392, -0.465999, -1.09565)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 4.37114e-08, 1, 0, 1, -4.37114e-08, -0.00444603, 6.72759, 0.0441322)
+light_energy = 13.121
+light_size = 1.0
+light_specular = 2.924
+spot_range = 9.45266
+spot_angle = 59.0103
+
+[node name="Node3D" parent="." instance=ExtResource("3_c151n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.693567, -5.57035)
