@@ -22,7 +22,7 @@ var velocity_y = 0
 func _ready():
 	nav_agent.target_position = player.global_transform.origin
 	#attack_area.body_entered.connect(_on_attack_area_body_entere
-	print("hello world")
+	print("gay sex super dildo")
 	#attack_area.body_exited.connect(_on_attack_area_body_exited)
 
 func _physics_process(delta):
