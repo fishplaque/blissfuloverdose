@@ -919,6 +919,7 @@ tree_root = SubResource("AnimationNodeStateMachine_magcc")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 100.0
 navigation_layers = 65535
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
